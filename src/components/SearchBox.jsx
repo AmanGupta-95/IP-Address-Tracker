@@ -9,7 +9,7 @@ const TextFieldContainer = styled.div`
 
 const TextField = styled.input`
 	width: 25rem;
-	height: 2.5rem;
+	height: 3rem;
 	border-radius: 10px;
 	border: none;
 	outline: none;
@@ -21,7 +21,7 @@ const TextField = styled.input`
 const CustomButton = styled.button`
 	position: absolute;
 	right: 0;
-	height: 2.5rem;
+	height: 3rem;
 	width: 2.7rem;
 	border: none;
 	outline: none;

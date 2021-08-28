@@ -11,6 +11,7 @@ const HeaderContainer = styled.div`
 	background-position: center;
 	width: 100vw;
 	height: 13rem;
+	position: relative;
 `;
 
 const Content = styled.div`
@@ -18,13 +19,19 @@ const Content = styled.div`
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	height: 15rem;
+	height: 18rem;
 	width: 100vw;
+	position: absolute;
 `;
 
 const Header = styled.h1`
 	font-size: 1.6rem;
 	color: #fff;
+`;
+
+const Map = styled.div`
+	height: calc(100vh - 13rem);
+	background-color: lightgray;
 `;
 
 function App() {
@@ -37,6 +44,7 @@ function App() {
 					<ResultBox />
 				</Content>
 			</HeaderContainer>
+			<Map>Something Cool</Map>
 		</>
 	);
 }
