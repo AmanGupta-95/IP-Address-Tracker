@@ -70,7 +70,7 @@ function App() {
 					position: [data.location.lat, data.location.lng],
 				});
 			});
-	}, [ip]);
+	}, [ip, API_KEY]);
 
 	return (
 		<>
