@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import PatternImage from './images/pattern-bg.png';
 import ResultBox from './components/ResultBox';
 import SearchBox from './components/SearchBox';
+import Map from './components/Map';
 
 const HeaderContainer = styled.div`
 	background-image: url(${PatternImage});
@@ -22,6 +23,7 @@ const Content = styled.div`
 	height: 18rem;
 	width: 100vw;
 	position: absolute;
+	z-index: 10;
 `;
 
 const Header = styled.h1`
@@ -29,10 +31,6 @@ const Header = styled.h1`
 	color: #fff;
 `;
 
-const Map = styled.div`
-	height: calc(100vh - 13rem);
-	background-color: lightgray;
-`;
 
 function App() {
 	return (
@@ -44,7 +42,7 @@ function App() {
 					<ResultBox />
 				</Content>
 			</HeaderContainer>
-			<Map>Something Cool</Map>
+			<Map/>
 		</>
 	);
 }
