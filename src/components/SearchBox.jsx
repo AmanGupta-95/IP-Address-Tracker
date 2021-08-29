@@ -29,14 +29,18 @@ const CustomButton = styled.button`
 	cursor: pointer;
 `;
 
-function SearchBox() {
+function SearchBox({ handleSearch, inputRef }) {
 	return (
 		<TextFieldContainer>
 			<TextField
+				ref={inputRef}
 				type="text"
 				placeholder="Search for any IP address or domain"
+				onKeyPress={(e) => {
+					if (e.key === 'Enter') handleSearch();
+				}}
 			/>
-			<CustomButton>
+			<CustomButton onClick={handleSearch}>
 				<svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
 					<path fill="none" stroke="#fff" strokeWidth="3" d="M2 1l6 6-6 6" />
 				</svg>

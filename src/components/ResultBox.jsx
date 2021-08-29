@@ -11,14 +11,14 @@ const ResultContainer = styled.div`
 	overflow: hidden;
 	padding: 1.5rem;
 
-    /* for the right side border */
+	/* for the right side border */
 	.sideBorder {
 		border-right: 1px solid hsl(0, 0%, 59%);
 		border-image: linear-gradient(
 			to bottom,
 			white 15%,
 			hsl(0, 0%, 59%) 15%,
-			hsl(0, 0%, 59%)   90%,
+			hsl(0, 0%, 59%) 90%,
 			white 90%
 		);
 		border-image-slice: 1;
@@ -32,27 +32,27 @@ const Header = styled.h3`
 `;
 
 const SubHeader = styled.h1`
-	font-size: 1.7rem;
+	font-size: 1.5rem;
 `;
 
-function ResultBox() {
+function ResultBox({ ip, address, timezone, isp }) {
 	return (
 		<ResultContainer>
 			<div className="sideBorder">
 				<Header>IP ADDRESS</Header>
-				<SubHeader>192.212.174.101</SubHeader>
+				<SubHeader>{ip}</SubHeader>
 			</div>
 			<div className="sideBorder">
 				<Header>LOCATION</Header>
-				<SubHeader>Brooklyn, NY 10001</SubHeader>
+				<SubHeader>{address}</SubHeader>
 			</div>
 			<div className="sideBorder">
 				<Header>TIMEZONE</Header>
-				<SubHeader>UTC-05:00</SubHeader>
+				<SubHeader>{timezone}</SubHeader>
 			</div>
 			<div>
 				<Header>ISP</Header>
-				<SubHeader>SpaceX Starlink</SubHeader>
+				<SubHeader>{isp}</SubHeader>
 			</div>
 		</ResultContainer>
 	);

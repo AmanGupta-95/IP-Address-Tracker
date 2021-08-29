@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 
@@ -31,18 +31,55 @@ const Header = styled.h1`
 	color: #fff;
 `;
 
-
 function App() {
+	const [location, setLocation] = useState({
+		ip: '',
+		address: '',
+		timezone: '',
+		isp: '',
+		position: [37.40599, -122.078514],
+	});
+	const [ip, setIP] = useState('8.8.8.8');
+	const inputRef = useRef('');
+
+	function handleSearch() {
+		const ipValidator =
+			/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+		if (ipValidator.test(inputRef.current.value)) setIP(inputRef.current.value);
+	}
+
+	useEffect(() => {
+		fetch(
+			`https://geo.ipify.org/api/v1?apiKey=at_N3y5buZGqxoYn9pGcADH7l7ssaKgg&ipAddress=${ip}`
+		)
+			.then((res) => res.json())
+			.then((data) => {
+				setLocation({
+					ip: data.ip,
+					address: `${data.location.region}, ${data.location.city} ${data.location.postalCode}`,
+					timezone: data.location.timezone,
+					isp: data.isp,
+					position: [data.location.lat, data.location.lng],
+				});
+			
+			});
+	}, [ip]);
+
 	return (
 		<>
 			<HeaderContainer>
 				<Content>
 					<Header>IP Address Tracker</Header>
-					<SearchBox />
-					<ResultBox />
+					<SearchBox handleSearch={handleSearch} inputRef={inputRef} />
+					<ResultBox
+						ip={location.ip}
+						address={location.address}
+						timezone={location.timezone}
+						isp={location.isp}
+					/>
 				</Content>
 			</HeaderContainer>
-			<Map/>
+			<Map position={location.position} />
 		</>
 	);
 }
