@@ -70,7 +70,6 @@ function App() {
 					isp: data.isp,
 					position: [data.location.lat, data.location.lng],
 				});
-				console.log(data)
 			});
 	}, [ip]);
 
