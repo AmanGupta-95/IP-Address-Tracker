@@ -51,7 +51,7 @@ function App() {
 	});
 	const [ip, setIP] = useState('8.8.8.8');
 	const inputRef = useRef('');
-	const API_KEY = process.env.REACT_APP_API_KEY;
+	
 
 	function handleSearch() {
 		const ipValidator =
@@ -59,6 +59,7 @@ function App() {
 		if (ipValidator.test(inputRef.current.value)) setIP(inputRef.current.value);
 	}
 	useEffect(() => {
+		const API_KEY = process.env.REACT_APP_API_KEY;
 		fetch(`https://geo.ipify.org/api/v1?apiKey=at_${API_KEY}&ipAddress=${ip}`)
 			.then((res) => res.json())
 			.then((data) => {
@@ -69,8 +70,9 @@ function App() {
 					isp: data.isp,
 					position: [data.location.lat, data.location.lng],
 				});
+				console.log(data)
 			});
-	}, [ip, API_KEY]);
+	}, [ip]);
 
 	return (
 		<>
