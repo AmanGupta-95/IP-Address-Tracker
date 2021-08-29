@@ -16,6 +16,9 @@ const TextField = styled.input`
 	font-size: 0.9rem;
 	padding-left: 15px;
 	font-weight: 500;
+	@media ${({ theme }) => theme.mediaQueries['below-320']} {
+		width: 72vw;
+	}
 `;
 
 const CustomButton = styled.button`
@@ -25,7 +28,7 @@ const CustomButton = styled.button`
 	width: 2.7rem;
 	border: none;
 	outline: none;
-	background-color: hsl(0, 0%, 17%);
+	background-color: ${({ theme }) => theme.colors.veryDarkGray};
 	cursor: pointer;
 `;
 

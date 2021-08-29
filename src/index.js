@@ -2,14 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
+import { theme } from './styles/theme';
 
 import GlobalStyle from './styles/GlobalStyle';
-// import 'leaflet/dist/leaflet.css';
+import { ThemeProvider } from 'styled-components';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<GlobalStyle />
-		<App />
+		<ThemeProvider theme={theme}>
+			<GlobalStyle />
+			<App />
+		</ThemeProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

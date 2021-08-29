@@ -24,6 +24,17 @@ const Content = styled.div`
 	width: 100vw;
 	position: absolute;
 	z-index: 10;
+
+	@media ${({ theme }) => theme.mediaQueries['below-925']}{
+		height: 20rem;
+	}
+	@media ${({ theme }) => theme.mediaQueries['below-425']}{
+		height: 30rem;
+    }
+	@media ${({ theme }) => theme.mediaQueries['below-320']}{
+		height: 32rem;
+    }
+
 `;
 
 const Header = styled.h1`
