@@ -25,16 +25,15 @@ const Content = styled.div`
 	position: absolute;
 	z-index: 10;
 
-	@media ${({ theme }) => theme.mediaQueries['below-925']}{
+	@media ${({ theme }) => theme.mediaQueries['below-925']} {
 		height: 20rem;
 	}
-	@media ${({ theme }) => theme.mediaQueries['below-425']}{
+	@media ${({ theme }) => theme.mediaQueries['below-425']} {
 		height: 30rem;
-    }
-	@media ${({ theme }) => theme.mediaQueries['below-320']}{
+	}
+	@media ${({ theme }) => theme.mediaQueries['below-320']} {
 		height: 32rem;
-    }
-
+	}
 `;
 
 const Header = styled.h1`
@@ -52,17 +51,15 @@ function App() {
 	});
 	const [ip, setIP] = useState('8.8.8.8');
 	const inputRef = useRef('');
+	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	function handleSearch() {
 		const ipValidator =
 			/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 		if (ipValidator.test(inputRef.current.value)) setIP(inputRef.current.value);
 	}
-
 	useEffect(() => {
-		fetch(
-			`https://geo.ipify.org/api/v1?apiKey=at_N3y5buZGqxoYn9pGcADH7l7ssaKgg&ipAddress=${ip}`
-		)
+		fetch(`https://geo.ipify.org/api/v1?apiKey=at_${API_KEY}&ipAddress=${ip}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setLocation({
@@ -72,7 +69,6 @@ function App() {
 					isp: data.isp,
 					position: [data.location.lat, data.location.lng],
 				});
-			
 			});
 	}, [ip]);
 
